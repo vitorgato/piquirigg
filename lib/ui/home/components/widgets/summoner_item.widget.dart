@@ -8,7 +8,7 @@ class SummonerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final planetThumbnail = new Container(
+    final planetThumbnail = Container(
       margin: const EdgeInsets.symmetric(vertical: 16.0),
       alignment: FractionalOffset.centerLeft,
       child: ClipOval(
@@ -23,76 +23,76 @@ class SummonerItem extends StatelessWidget {
 
     final baseTextStyle = const TextStyle(fontFamily: 'Poppins');
     final regularTextStyle = baseTextStyle.copyWith(
-        color: const Color(0xffb6b2df),
-        fontSize: 9.0,
-        fontWeight: FontWeight.w400);
-    final subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
+        color: Colors.grey[800], fontSize: 12.0, fontWeight: FontWeight.bold);
+    final subHeaderTextStyle =
+        regularTextStyle.copyWith(fontSize: 12.0, fontWeight: FontWeight.bold);
     final headerTextStyle = baseTextStyle.copyWith(
-        color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600);
+        color: Colors.grey[800], fontSize: 18.0, fontWeight: FontWeight.w600);
 
-    Widget _planetValue({String value = "", String image = ""}) {
+    Widget _cardSubText({String text = "", String image = ""}) {
       return Row(children: <Widget>[
         // new Image.asset(image, height: 12.0),
         Container(width: 8.0),
-        Text("gravity", style: regularTextStyle),
+        Text(text, style: regularTextStyle),
       ]);
     }
 
-    final planetCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
-      constraints: new BoxConstraints.expand(),
-      child: new Column(
+    final planetCardContent = Container(
+      margin: EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      constraints: BoxConstraints.expand(),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Container(height: 4.0),
-          new Text("name", style: headerTextStyle),
-          new Container(height: 10.0),
-          new Text("location", style: subHeaderTextStyle),
-          new Container(
-              margin: new EdgeInsets.symmetric(vertical: 8.0),
+          Container(height: 4.0),
+          Text("vitorgato", style: headerTextStyle),
+          Container(height: 10.0),
+          Text("Procurando DUO, discord.gg/vitorgato",
+              maxLines: 1, style: subHeaderTextStyle),
+          Container(
+              margin: EdgeInsets.symmetric(vertical: 8.0),
               height: 2.0,
               width: 18.0,
-              color: new Color(0xff00c6ff)),
-          new Row(
+              color: Color(0xff00c6ff)),
+          Row(
             children: <Widget>[
-              new Expanded(
-                  child: _planetValue(
-                      value: "distance", image: 'assets/img/ic_distance.png')),
-              new Expanded(
-                  child: _planetValue(
-                      value: "gravity", image: 'assets/img/ic_gravity.png'))
+              Expanded(
+                  child: _cardSubText(
+                      text: "MID", image: 'assets/img/ic_distance.png')),
+              Expanded(
+                  child: _cardSubText(
+                      text: "Diamante 3", image: 'assets/img/ic_gravity.png'))
             ],
           ),
         ],
       ),
     );
 
-    final planetCard = new Container(
+    final planetCard = Container(
       child: planetCardContent,
       height: 124.0,
-      margin: new EdgeInsets.only(left: 46.0),
-      decoration: new BoxDecoration(
+      margin: EdgeInsets.only(left: 46.0),
+      decoration: BoxDecoration(
         // color: new Color(0xFF333366),
-        color: Colors.grey[400],
+        color: Color.fromARGB(255, 206, 205, 205),
         shape: BoxShape.rectangle,
-        borderRadius: new BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8.0),
         boxShadow: <BoxShadow>[
-          new BoxShadow(
+          BoxShadow(
             color: Colors.black12,
             blurRadius: 10.0,
-            offset: new Offset(0.0, 10.0),
+            offset: Offset(0.0, 10.0),
           ),
         ],
       ),
     );
 
-    return new Container(
+    return Container(
         height: 120.0,
         margin: const EdgeInsets.symmetric(
           vertical: 16.0,
           horizontal: 24.0,
         ),
-        child: new Stack(
+        child: Stack(
           children: <Widget>[
             planetCard,
             planetThumbnail,

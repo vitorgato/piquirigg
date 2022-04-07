@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:piquirigg/core/shared/widgets/custom_elevation.dart';
 import 'package:piquirigg/core/shared/widgets/wave_shape.dart';
 import 'package:piquirigg/ui/home/components/summoner_list.component.dart';
+import 'package:piquirigg/ui/register_summoner/register_summoner_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,13 +28,14 @@ class HomeScreen extends StatelessWidget {
                         height: 160,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(colors: [
-                          Color(0xFF0BC6E3),
+                          Color.fromARGB(255, 17, 214, 245),
                           Color(0xFF0BC4E2),
+                          Color.fromARGB(255, 14, 81, 92),
                         ])),
                       ),
                     ),
                     Positioned(
-                      top: 55,
+                      top: size.height * 0.1,
                       left: 5,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,6 +54,9 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 width: size.width,
                 margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -60,13 +66,23 @@ class HomeScreen extends StatelessWidget {
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(color: Colors.blue)))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(
+                      () => RegisterSummonerScreen(),
+                      transition: Transition.zoom,
+                      curve: Curves.easeInOut,
+                      duration: const Duration(milliseconds: 550),
+                    );
+                  },
                   child: Text(
                     "REGISTRE SEU SUMMONER",
                     style: GoogleFonts.montserrat().copyWith(
                         fontWeight: FontWeight.bold, color: Colors.grey[800]),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               SummonerList()
             ],
