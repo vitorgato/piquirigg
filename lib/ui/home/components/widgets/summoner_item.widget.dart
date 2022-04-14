@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:piquirigg/models/summoner.model.dart';
+import 'package:piquirigg/core/models/summoner.model.dart';
 
 class SummonerItem extends StatelessWidget {
   final Summoner summoner;

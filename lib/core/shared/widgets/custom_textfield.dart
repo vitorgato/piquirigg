@@ -9,11 +9,15 @@ class CustomTextField extends StatelessWidget {
   final Color hintColor;
   final TextEditingController? controller;
   final int maxLines;
+  final int? maxLength;
+  final bool obscure;
 
   CustomTextField(
       {Key? key,
       required this.hintText,
       this.initialValue,
+      this.obscure = false,
+      this.maxLength,
       this.maxLines = 1,
       this.kType = TextInputType.text,
       this.onChanged,
@@ -27,7 +31,9 @@ class CustomTextField extends StatelessWidget {
       onChanged: onChanged,
       initialValue: null,
       keyboardType: kType,
+      maxLength: maxLength,
       controller: controller,
+      obscureText: obscure,
       cursorHeight: 20,
       style: TextStyle(
         color: Colors.grey[800],

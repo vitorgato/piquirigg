@@ -11,6 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("build home");
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Material(

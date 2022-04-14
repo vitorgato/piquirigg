@@ -10,7 +10,6 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // darkTheme: ThemeData.dark(),
       home: HomeScreen(),
     );
   }
