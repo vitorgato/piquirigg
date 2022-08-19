@@ -44,10 +44,9 @@ class SummonerItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(height: 4.0),
-          Text("vitorgato", style: headerTextStyle),
+          Text(summoner.summonerName!, style: headerTextStyle),
           Container(height: 10.0),
-          Text("Procurando DUO, discord.gg/vitorgato",
-              maxLines: 1, style: subHeaderTextStyle),
+          Text(summoner.note!, maxLines: 1, style: subHeaderTextStyle),
           Container(
               margin: EdgeInsets.symmetric(vertical: 8.0),
               height: 2.0,
@@ -57,10 +56,11 @@ class SummonerItem extends StatelessWidget {
             children: <Widget>[
               Expanded(
                   child: _cardSubText(
-                      text: "MID", image: 'assets/img/ic_distance.png')),
+                      text: summoner.role!.toUpperCase(),
+                      image: 'assets/img/ic_distance.png')),
               Expanded(
                   child: _cardSubText(
-                      text: "Diamante 3", image: 'assets/img/ic_gravity.png'))
+                      text: summoner.rank!, image: 'assets/img/ic_gravity.png'))
             ],
           ),
         ],

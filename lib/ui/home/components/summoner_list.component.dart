@@ -3,13 +3,14 @@ import 'package:piquirigg/core/models/summoner.model.dart';
 import 'package:piquirigg/ui/home/components/widgets/summoner_item.widget.dart';
 
 class SummonerList extends StatelessWidget {
-  const SummonerList({Key? key}) : super(key: key);
+  List<Summoner> list = [];
+  SummonerList({Key? key, list}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-          itemCount: 20,
+          itemCount: list.length,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return Padding(

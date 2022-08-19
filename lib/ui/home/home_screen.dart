@@ -1,13 +1,50 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:piquirigg/core/models/summoner.model.dart';
 import 'package:piquirigg/core/shared/widgets/custom_elevation.dart';
 import 'package:piquirigg/core/shared/widgets/wave_shape.dart';
 import 'package:piquirigg/ui/home/components/summoner_list.component.dart';
+import 'package:piquirigg/ui/home/components/widgets/summoner_item.widget.dart';
+import 'package:piquirigg/ui/home/home_screen.controller.dart';
 import 'package:piquirigg/ui/register_summoner/register_summoner_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late final HomeScreenController controller;
+
+  @override
+  void initState() {
+    controller = Get.put(HomeScreenController());
+
+    super.initState();
+  }
+
+  // Stream<List<Summoner>> getAllSummoners() {
+  //   return FirebaseFirestore.instance.collection("summoners").snapshots().map(
+  //       (snapshot) =>
+  //           snapshot.docs.map((e) => Summoner.fromJson(e.data())).toList());
+  // }
+  getAllSummoners(AsyncSnapshot<QuerySnapshot> snapshot) {
+    return snapshot.data?.docs.map((doc) {
+      Summoner summoner = Summoner.fromJson(doc.data());
+      return Padding(
+        padding: EdgeInsets.all(8),
+        child: SummonerItem(summoner),
+      );
+    }).toList();
+  }
+  // Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: SummonerItem(Summoner()));
+  //     })
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +122,51 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              SummonerList()
+              Expanded(
+                child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("summoners")
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData)
+                        return Center(child: Text("Nenhum jogador cadastrado"));
+                      return ListView(children: getAllSummoners(snapshot));
+                    }),
+              ),
+              // SummonerList(
+              //   list: [1, 2],
+              // )
+              // StreamBuilder<List<Summoner>>(
+              //   stream: getAllSummoners(),
+              //   builder: ((context, snapshot) => {
+              //     if(snapshot.hasError){
+              //       return Center(child: Text("Lista vazia"));
+              //     } else if(snapshot.hasData){
+              //       return Text("");
+              //     }else{
+              //       return Center(
+              //         child: CircularProgressIndicator(),
+              //       );
+              //     }
+
+              // }))
             ],
           ),
         ),
       ),
     );
+    // Expanded(
+    // child: ListView.builder(
+    //     itemCount: controller.summoners.length,
+    //     shrinkWrap: true,
+    //     itemBuilder: (BuildContext context, int index) {
+    //       return Padding(
+    //           padding: const EdgeInsets.all(8.0),
+    //           child: SummonerItem(Summoner()));
+    //     }),
+    //           );
+
     // return Material(
     //     child: Container(
     //   padding: const EdgeInsets.only(bottom: 12),

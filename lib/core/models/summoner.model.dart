@@ -1,49 +1,36 @@
-// To parse this JSON data, do
-//
-//     final summoner = summonerFromJson(jsonString);
-
-import 'dart:convert';
-
-Summoner summonerFromJson(String str) => Summoner.fromJson(json.decode(str));
-
-String summonerToJson(Summoner data) => json.encode(data.toJson());
-
 class Summoner {
-  Summoner({
-    this.summonerName,
-    this.summonerId,
-    this.rankName,
-    this.note,
-    this.position,
-    this.mic,
-    this.password,
-  });
-
   String? summonerName;
-  String? summonerId;
-  String? rankName;
+  String? iconUrl;
   String? note;
-  String? position;
-  bool? mic;
-  int? password;
+  String? role;
+  String? password;
+  String? rank;
 
-  factory Summoner.fromJson(Map<String, dynamic> json) => Summoner(
-        summonerName: json["summonerName"],
-        summonerId: json["summonerId"],
-        rankName: json["rankName"],
-        note: json["note"],
-        position: json["position"],
-        mic: json["mic"],
-        password: json["password"],
-      );
+  Summoner(
+      {this.summonerName,
+      this.iconUrl,
+      this.note,
+      this.role,
+      this.password,
+      this.rank});
 
-  Map<String, dynamic> toJson() => {
-        "summonerName": summonerName,
-        "summonerId": summonerId,
-        "rankName": rankName,
-        "note": note,
-        "position": position,
-        "mic": mic,
-        "password": password,
-      };
+  Summoner.fromJson(dynamic json) {
+    summonerName = json['summonerName'] ?? "N/A";
+    iconUrl = json['iconUrl'] ?? "N/A";
+    note = json['note'] ?? "N/A";
+    role = json['role'] ?? "N/A";
+    password = json['password'] ?? "N/A";
+    rank = json['rank'] ?? "N/A";
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['summonerName'] = this.summonerName;
+    data['iconUrl'] = this.iconUrl;
+    data['note'] = this.note;
+    data['role'] = this.role;
+    data['password'] = this.password;
+    data['rank'] = this.rank;
+    return data;
+  }
 }

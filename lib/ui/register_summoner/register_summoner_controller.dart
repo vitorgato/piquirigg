@@ -13,22 +13,29 @@ class RegisterSummonerController extends GetxController {
   TextEditingController summonerNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController noteController = TextEditingController();
-  String? position;
+  String? role;
 
-  register() {
+  register() async {
     if (checkObrigatoryFields()) {
-      _summonerRepository.registerSummoner(Summoner(
+      if (role == null || role!.isEmpty) {
+        role = "Procurando um duo.";
+      }
+      bool isValid = await _summonerRepository.registerSummoner(Summoner(
           summonerName: summonerNameController.text,
-          password: int.parse(passwordController.text),
+          password: passwordController.text,
           note: noteController.text,
-          position: position));
+          role: role));
 
-      Get.back();
+      if (isValid) {
+        Get.back();
+      } else {
+        Utils().customSnackBar("Erro", "Nickname não encontrado");
+      }
     }
   }
 
-  setPosition(p) {
-    position = p;
+  setPosition(r) {
+    role = r;
   }
 
   bool checkObrigatoryFields() {
@@ -36,7 +43,7 @@ class RegisterSummonerController extends GetxController {
       Utils().customSnackBar("Erro", "Por favor, Informe seu Nickname");
       return false;
     }
-    if (position == null) {
+    if (role == null) {
       Utils().customSnackBar("Erro", "Por favor, Informe sua Posição");
       return false;
     }

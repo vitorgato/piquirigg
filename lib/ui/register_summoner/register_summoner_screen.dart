@@ -16,8 +16,11 @@ class RegisterSummonerScreen extends StatefulWidget {
 }
 
 class _RegisterSummonerScreenState extends State<RegisterSummonerScreen> {
+  late final RegisterSummonerController controller;
+
   @override
   void initState() {
+    controller = Get.put(RegisterSummonerController());
     super.initState();
   }
 
@@ -26,30 +29,31 @@ class _RegisterSummonerScreenState extends State<RegisterSummonerScreen> {
     super.dispose();
   }
 
+  _customLabeled({child, label}) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: GoogleFonts.quicksand().copyWith(
+                fontWeight: FontWeight.bold, color: const Color(0xff232434)),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: child,
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    RegisterSummonerController controller =
-        Get.put(RegisterSummonerController());
+    // RegisterSummonerController controller =
+    //     Get.put(RegisterSummonerController());
     final size = MediaQuery.of(context).size;
-    _customLabeled({child, label}) {
-      return Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: GoogleFonts.quicksand().copyWith(
-                  fontWeight: FontWeight.bold, color: const Color(0xff232434)),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5.0),
-              child: child,
-            )
-          ],
-        ),
-      );
-    }
 
     return SafeArea(
       child: Scaffold(
@@ -98,10 +102,10 @@ class _RegisterSummonerScreenState extends State<RegisterSummonerScreen> {
                               TogglePositionWidget(selectedPosition: (value) {
                                 controller.setPosition(value);
                               }),
-                              _customLabeled(
-                                  label: "Microfone",
-                                  child:
-                                      Switch(value: false, onChanged: (v) {})),
+                              // _customLabeled(
+                              //     label: "Microfone",
+                              //     child:
+                              //         Switch(value: false, onChanged: (v) {})),
                             ],
                           ),
                         ),

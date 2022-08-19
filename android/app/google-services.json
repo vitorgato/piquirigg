@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "71617113056",
+    "project_id": "piquirigg-c5f4d",
+    "storage_bucket": "piquirigg-c5f4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71617113056:android:7eda2bbdecda6ad23fd985",
+        "android_client_info": {
+          "package_name": "com.example.piquirigg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71617113056-1srg60qktemfutrirgjvvjd9tmf3vbva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfMUD7ekI41bNawsJaE5CZswf2LYKZ7eI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71617113056-1srg60qktemfutrirgjvvjd9tmf3vbva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
